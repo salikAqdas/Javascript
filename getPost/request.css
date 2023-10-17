@@ -1,0 +1,44 @@
+.request select{
+    border:1px solid var(--primary-color);
+    border-radius: 5px;
+    /* padding: 2px; */
+    color: green;
+    font-size: 14px;
+    font-weight: bold;
+}
+.request input{
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    margin: 0 10px;
+    padding: 2px;
+}
+.request .btn{
+    /* margin-left: 10px; */
+    cursor: pointer;
+    font-size: 16px;
+    border: 1px solid var(--primary-color);
+    font-weight: 600;
+}
+.request .btn:hover{
+    background-color: #fff;
+    color: var(--primary-color);
+    transition: background-color .5s;
+}
+.request-body{
+    margin: 12px;
+}
+.request-body input[type = "radio"]{
+    margin: 12px;
+}
+.request-body .header-container table{
+    width: 80%;
+}
+.request-body .header-container td{
+    padding: 8px;
+    border: 1px solid #000;
+}
+.request-body .header-container table thead tr td{
+    font-weight: bold;
+    text-align: center;
+}

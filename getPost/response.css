@@ -1,0 +1,4 @@
+.response-container textarea{
+    width: 100%;
+    border-color: var(--primary-color) !important;
+}

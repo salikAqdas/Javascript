@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="nav-container">
+        <div class="logo">
+            TestNow
+        </div>
+        <div class="myProfile">
+            <img src="https://t3.ftcdn.net/jpg/05/17/79/88/360_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg" alt=" image not found">
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="card">
+                <h4 class="">
+                    My Requests
+                </h4>
+            </div>
+        </div>
+        <div class="mid-con">
+            <div class="request-container card">
+                <div class="flex-box request">
+                    <select name="requestType" id="requestType">
+                        <option value="get">GET</option>
+                        <option value="post">POST</option>
+                        <option value="put">PUT</option>
+                        <option value="del">DELETE</option>
+                    </select>
+                    <input type="text" name="req-url" id="req-url" placeholder="Enter URL here...">
+                    <button class="sendrequest btn">Send Request</button>
+                </div>
+                <div class="request-body">
+                    <label for="requestBody-head">
+                    <input type="radio" name="requestBody" id="requestBody-head" checked>Header </label>
+                    <label for="requestBody-body">
+                    <input type="radio" name="requestBody" id="requestBody-body">Body </label>
+                    <div class="header-container">
+                        <table cell-spacing = "0">
+                            <thead>
+                                <tr>
+                                    <td>Key</td>
+                                    <td>Value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="" id=""></td>
+                                    <td><input type="text" name="" id=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="response-container card">
+                <h4>Response</h4>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
