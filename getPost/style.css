@@ -10,8 +10,13 @@
     margin: 0;
     font-family: 'Roboto', sans-serif;
 }
+select:focus-visible,
+textarea:focus-visible,
+input:focus-visible{
+    outline: none;
+}
 body{
-    background-color: #d7d7d7b8;
+    background-color: #d7d7d770;
 }
 .nav-container{
     display: flex;
