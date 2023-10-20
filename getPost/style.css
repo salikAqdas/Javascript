@@ -3,14 +3,26 @@
 @import './response.css';
 :root{
     --primary-color:#0ebfff;
+    --primary-color:#2f80ee;
     --primary-color-faded:#0ebfff4d;
+    --primary-color-faded:#2f80ee4d;
 }
 *{
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
 }
-select:focus-visible,
+#progress-container{
+    height: 100vh;
+    width: 100vw;
+    background: #0000002e url(./loader.gif) no-repeat center center;
+    background-size: 100px 100px;
+    position: fixed;
+    z-index: 100;
+    display: none;
+
+}
+select:focus-visible, 
 textarea:focus-visible,
 input:focus-visible{
     outline: none;

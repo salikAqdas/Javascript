@@ -17,6 +17,12 @@ function showRequestBody(){
     document.getElementById("request-header-label").className = "request-body-tabs";
 }
 
+function showProgressBar(){
+    document.getElementById("progress-container").style.display = "block";
+}
+function hideProgressBar(){
+    document.getElementById("progress-container").style.display = "none"; 
+}
 
 function changeTextColor(e) {
     switch (e.value) {
@@ -32,7 +38,7 @@ function changeTextColor(e) {
             break;
 
             case "del":
-            e.style.color = "red";
+            e.style.color = "red"; 
             break;
             
         default:
@@ -82,12 +88,14 @@ function changeTextColor(e) {
 //#####################################  HTTP Request  ###################################
 
 function sendReq(){
+    showProgressBar();
     document.getElementById("response-textarea").value = "Please wait..."
     const apiUrl = document.getElementById("req-url").value;
     const requestType = document.getElementById("requestType").value;
     if(requestType == "GET"){
         let x = getHeaderData();
-        if(x.trim() == ""){
+        if(x.trim() == ''){
+            
             callGet(apiUrl);
         }
         else{
@@ -95,11 +103,17 @@ function sendReq(){
         }
     }
     else{
-
+            callRest(apiUrl ,requestType, getHeaderData() , getBody());
     }
+    hideProgressBar();
 }
 function callGet(apiUrl , header){
-    header = JSON.parse(header);
+    if(header == undefined){
+        header = {}
+    }
+    else{
+        header = JSON.parse(header);
+    }
     fetch(apiUrl,{
         method:'GET',
         headers: header
@@ -109,7 +123,25 @@ function callGet(apiUrl , header){
         document.getElementById("response-textarea").value = text;
     })
 }
-
+    function callRest(apiUrl , requestType ,  header , Body){
+        Body = JSON.stringify(JSON.parse(Body));
+        if(header == undefined){
+            header = {}
+        }
+        else{
+            header = JSON.parse(header);
+        }
+        // header['Content-Type'] = 'application/json';
+        fetch(apiUrl,{
+            method: requestType,
+            headers: header,
+            body: Body,
+        })
+        .then(response => response.text())
+        .then((text)=>{
+            document.getElementById("response-textarea").value = text;
+        })
+    }
 function getHeaderData(){
     let paramType = document.querySelector("input[name = 'param-radio']:checked").value;
     let data;
@@ -133,6 +165,15 @@ function getHeaderData(){
 
 function getBody(){
     let reqBody = document.getElementById("request-body-textarea").value;
-    
     return reqBody;
 }
+
+// ############################## BEAUTIFY #############################
+
+let beautify = document.getElementById("beautify");
+let tar = document.getElementById("response-textarea");
+beautify.addEventListener('click' , ()=>{
+    let JsonString = tar.value;
+    const formattedJson = JSON.stringify(JSON.parse(JsonString),null,4);
+    tar.value = formattedJson;
+})  

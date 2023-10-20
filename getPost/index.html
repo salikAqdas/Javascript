@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./api.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <title>RESTAssure</title>
 </head>
 
 <body>
+    <div id="progress-container"></div> 
     <div class="nav-container">
         <div class="logo">
             RESTAssure
@@ -77,7 +79,13 @@
 
             </div>
             <div class="response-container card">
-                <h4>Response</h4>
+                <div class="beautify-container">
+                    <h4>Response</h4>
+                    <div>
+                        <button class="btn" id="beautify">Beautify</button>
+                        <button class="btn" id="copy">Copy</button>
+                    </div>
+                </div>
                 <textarea name="" cols="30" rows="10" readonly id="response-textarea"></textarea>
             </div>
         </div>
