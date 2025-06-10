@@ -12,9 +12,20 @@
     </style>
 </head>
 <body class="bg-black">
-    <div >
-        <h1 id = 'title' class="heading">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit, minus.</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium facere aspernatur, consequatur quidem similique dolores perferendis dolore ab consectetur deleniti.</p>
-    </div>
+    <ul class="programmingLanguages">
+
+    </ul>
 </body>
+    <script>
+        
+        function createElement_AppendToTarget(ElementType, InnerText, Target) {
+            let element = document.createElement(ElementType);
+            element.innerText = InnerText;
+            document.querySelector(Target).appendChild(element);
+        }
+        const progLang = ["Java","Ruby","Javascript","Python","C++","HTML","CSS"];
+        progLang.forEach((lang)=>{
+            createElement_AppendToTarget('li',lang,'.programmingLanguages');
+        })
+    </script>
 </html>
