@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Digital Clock</title>
+</head>
+<style>
+    body{
+        height: 100svh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #212121;
+    }
+    .clockBox{
+        background-color: #000;
+        padding: 24px;
+        box-shadow: 0 0 8px #000;
+        border-radius: 12px;
+    }
+    .clockBox select{
+        padding: 10px;
+        font-size: 18px;
+        background-color: transparent;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+    .clockBox select option{
+        color: #000;
+    }
+    #clock{
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 28px;
+        background-color: orangered;
+        color: #fff;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="clockBox">
+    <select id="timezone-select" onchange="handleOnChange()">
+        <option value="UTC">UTC (Coordinated Universal Time)</option>
+        <option value="America/New_York">Eastern Time (US & Canada)</option>
+        <option value="America/Chicago">Central Time (US & Canada)</option>
+        <option value="America/Denver">Mountain Time (US & Canada)</option>
+        <option value="America/Los_Angeles">Pacific Time (US & Canada)</option>
+        <option value="America/Anchorage">Alaska</option>
+        <option value="America/Honolulu">Hawaii</option>
+        <option value="Europe/London">United Kingdom (GMT/BST)</option>
+        <option value="Europe/Paris">France (CET/CEST)</option>
+        <option value="Europe/Berlin">Germany (CET/CEST)</option>
+        <option value="Asia/Kolkata">India (IST)</option>
+        <option value="Asia/Tokyo">Japan (JST)</option>
+        <option value="Asia/Shanghai">China (CST)</option>
+        <option value="Australia/Sydney">Australia – Sydney (AEST/AEDT)</option>
+        <option value="Africa/Johannesburg">South Africa (SAST)</option>
+        <option value="America/Argentina/Buenos_Aires">Argentina (ART)</option>
+        <option value="Asia/Karachi">Pakistan (PKT)</option>
+        <option value="Asia/Kuala_Lumpur">Malaysia (MYT)</option>
+        <option value="Europe/Moscow">Russia (MSK)</option>
+        <option value="Asia/Dubai">UAE (GST)</option>
+        <option value="Asia/Seoul">South Korea (KST)</option>
+        <option value="America/Sao_Paulo">Brazil (BRT/BRST)</option>
+        <option value="Africa/Nairobi">Kenya (EAT)</option>
+        <option value="Asia/Singapore">Singapore (SGT)</option>
+        <option value="Asia/Hong_Kong">Hong Kong (HKT)</option>
+        <option value="Europe/Madrid">Spain (CET/CEST)</option>
+        <option value="America/Toronto">Canada (EST/EDT)</option>
+        <option value="America/Vancouver">Canada (PST/PDT)</option>
+        <option value="Asia/Manila">Philippines (PST)</option>
+        <option value="Europe/Oslo">Norway (CET/CEST)</option>
+        <option value="Europe/Stockholm">Sweden (CET/CEST)</option>
+        <option value="Australia/Perth">Australia – Perth (AWST)</option>
+        <option value="Africa/Lagos">Nigeria (WAT)</option>
+        <option value="Asia/Kathmandu">Nepal (NPT)</option>
+        <option value="Africa/Abidjan">Ivory Coast (GMT)</option>
+        <option value="America/Los_Angeles">Pacific Time (US & Canada)</option>
+        <option value="America/Chicago">Central Time (US & Canada)</option>
+        <option value="America/New_York">Eastern Time (US & Canada)</option>
+        <option value="America/Denver">Mountain Time (US & Canada)</option>
+        <option value="America/Anchorage">Alaska</option>
+        <option value="America/Honolulu">Hawaii</option>
+        <option value="Asia/Kolkata" selected>India (IST)</option>
+        <option value="Asia/Tokyo">Japan (JST)</option>
+        <option value="Asia/Shanghai">China (CST)</option>
+        <option value="Australia/Sydney">Australia – Sydney (AEST/AEDT)</option>
+        <option value="Africa/Johannesburg">South Africa (SAST)</option>
+        <option value="America/Argentina/Buenos_Aires">Argentina (ART)</option>
+        <option value="Asia/Karachi">Pakistan (PKT)</option>
+        <option value="Asia/Kuala_Lumpur">Malaysia (MYT)</option>
+        <option value="Europe/Moscow">Russia (MSK)</option>
+        <option value="Asia/Dubai">UAE (GST)</option>
+        <option value="Asia/Seoul">South Korea (KST)</option>
+        <option value="America/Sao_Paulo">Brazil (BRT/BRST)</option>
+        <option value="Africa/Nairobi">Kenya (EAT)</option>
+        <option value="Asia/Singapore">Singapore (SGT)</option>
+        <option value="Asia/Hong_Kong">Hong Kong (HKT)</option>
+        <option value="Europe/Madrid">Spain (CET/CEST)</option>
+        <option value="America/Toronto">Canada (EST/EDT)</option>
+        <option value="America/Vancouver">Canada (PST/PDT)</option>
+        <option value="Asia/Manila">Philippines (PST)</option>
+        <option value="Europe/Oslo">Norway (CET/CEST)</option>
+        <option value="Europe/Stockholm">Sweden (CET/CEST)</option>
+        <option value="Australia/Perth">Australia – Perth (AWST)</option>
+        <option value="Africa/Lagos">Nigeria (WAT)</option>
+        <option value="Asia/Kathmandu">Nepal (NPT)</option>
+        <option value="Africa/Abidjan">Ivory Coast (GMT)</option>
+    </select>
+
+    <div id="clock">
+    </div>
+    </div>
+</body>
+<script>
+    let time_Zone = 'Asia/Kolkata';
+    function updateClocks() {
+        const now = new Date();
+        const options = {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        }
+        document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { ...options, timeZone: time_Zone });
+        // console.log(now);
+
+    }
+    setInterval(updateClocks, 1000); // Call the function every 1000 ms (1 second)
+    updateClocks(); // Call once right away so there’s no delay
+    function handleOnChange() {
+
+        time_Zone = document.getElementById('timezone-select').value;
+        if (!time_Zone) time_Zone = 'Asia/Kolkata';
+        updateClocks();
+    }
+</script>
+
+</html>

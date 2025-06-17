@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+
+<body>
+    <label for="height">Height (cm)
+        <input type="text" name="height" id="height" placeholder="Enter your height in cm">
+    </label>
+    <label for="weight">Weight (kg)
+        <input type="text" name="weight" id="weight" placeholder="Enter your weight in kg">
+    </label>
+    <button onclick="calculateBMI()"> Calculate BMI</button>
+    <div id="verdict">
+        <div id="bmi">
+
+        </div>
+        <div id="message">
+
+        </div>
+    </div>
+</body>
+<script>
+    function calculateBMI() {
+        let height = document.getElementById('height').value;
+        let weight = document.getElementById('weight').value;
+        let BMI = 0;
+        let verdict = '';
+        if (height && weight) {
+            height = height/100
+            BMI = weight / (height*height);
+            if(BMI < 16){
+                verdict = 'Severe Thinness';
+            }
+            else if(BMI < 17 && BMI >= 16){
+                verdict = 'Moderate Thinness';
+            }
+            else if(BMI < 18.5 && BMI >= 17){
+                verdict = 'Mild Thinness';
+            }
+            else if(BMI < 25 && BMI >= 18.5){
+                verdict = 'Normal';
+            }
+            else if(BMI >= 25 && BMI < 30){
+                verdict = 'Overweight';
+            }
+            else if(BMI >= 30){
+                verdict = 'Obese';
+            }
+            else{
+                verdict = ''
+            }
+            document.querySelector('#bmi').innerHTML = `BMI: ${BMI}`;
+            document.querySelector('#message').innerHTML = `Verdict: ${verdict}`;
+        }
+    }
+
+
+</script>
+
+</html>
