@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+</head>
+<style>
+    body{
+        background-color: #212121;
+        height: 100svh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    h2{
+        margin-bottom: 0;
+    }
+
+    .main-container{
+        background: #151515;
+        padding:24px;
+        border-radius: 12px;
+        box-shadow: 0 0 7px 2px #000;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+    #number{
+        padding: 10px;
+        font-size: 18px;
+        text-align: center;
+    }
+    #submit-btn{
+        padding: 8px;
+        font-size: 18px;
+        border-radius: 10px;
+        border: 1px solid #fff;
+        cursor: pointer;
+        background-color: #000;
+        color: #fff;
+    }
+    #submit-btn:hover{
+        scale: 1.02;
+        transition: all .2s;
+    }
+</style>
+
+<body>
+    <div class="main-container">
+        <div style="text-align: center;">
+            Try and guess a random number between 1 and 100<br> You have 10 attempts to guess the right number.
+        </div>
+        <h2>Guess a number</h2>
+        <div class="numInput">
+            <input type="text" name="number" id="number">
+        </div>
+        <button id="submit-btn">Submit Guess</button>
+
+        <div >
+            Previous Guesses: <span id="previous-guess"></span>
+        </div>
+        <div>
+            Guesses Remaining: <span id="guess-remaining">10</span>
+        </div>
+        <div id="verdict">
+
+        </div>
+    </div>
+</body>
+<script>
+    let totalNumberOfGuess = 10;
+    let remainingGuess = 10;
+    let won = false;
+    let previous_guesses = [];
+    let rand_num = Math.floor(Math.random() * 100);
+    let verdictdiv = document.querySelector("#verdict");
+
+    let prevGues_div = document.querySelector("#previous-guess");
+
+    let guess_remaining_div = document.querySelector("#guess-remaining");
+
+    document.getElementById('submit-btn').addEventListener('click',()=>{
+        if(remainingGuess === 0){
+            // alert("You have exhausted your chances! Refresh to play again.");
+            verdictdiv.innerHTML = `You have lost the game. Refresh the game to play again \n Correct guess: ${rand_num}`;
+            verdictdiv.style.color = "red";
+            return;
+        }
+        let num = document.getElementById("number").value;
+        if(isNaN(num) || num === ''){
+            // alert("Enter a valid number")
+            verdictdiv.innerHTML = "Enter a valid number";
+            verdictdiv.style.color = "red";
+            return;
+        }
+        num = Number(num);
+        remainingGuess--;
+        previous_guesses.push(num);
+        prevGues_div.innerHTML = previous_guesses;
+        guess_remaining_div.innerHTML = remainingGuess;
+
+        if(rand_num === num){
+            verdictdiv.innerHTML = "You Won";
+            verdictdiv.style.color = "green";
+        }
+        else{
+            verdictdiv.innerHTML = "Wrong guess!";
+            verdictdiv.style.color = "red";
+        }
+
+
+    })
+    
+
+</script>
+
+</html>
